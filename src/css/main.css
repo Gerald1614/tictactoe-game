@@ -1,8 +1,9 @@
+
+
 body{
   background-color: black;
   color:white;
   font-family: 'Gloria Hallelujah', cursive;
-
 }
 .container{
   margin:10px;
@@ -17,8 +18,26 @@ background-color: #666666;
   width: 120px;
 }
 
-.switch span {
+span {
 font-size: 200%;
+}
+
+.gameplay {
+margin:0px auto;
+width: 300px
+}
+p {
+  margin: 0px;
+}
+
+td {
+  width: 100px;
+  height: 100px;
+  font-size: 400%;
+}
+
+td:hover {
+  background-color: #44444444;
 }
 
 .cmn-toggle {
@@ -40,7 +59,7 @@ input.cmn-toggle-round-flat + label {
   padding: 2px;
   width: 120px;
   height: 40px;
-  background-color: #dddddd;
+  background-color: red;
   -webkit-border-radius: 40px;
   -moz-border-radius: 40px;
   -ms-border-radius: 40px;
@@ -77,7 +96,7 @@ input.cmn-toggle-round-flat + label:after {
   left: 4px;
   bottom: 4px;
   width: 52px;
-  background-color: #dddddd;
+  background-color: red;
   -webkit-border-radius: 52px;
   -moz-border-radius: 52px;
   -ms-border-radius: 52px;
