@@ -101,38 +101,44 @@ function checkMoves() {
     });
     console.log(diffComputer);
     console.log(diffPlayer);
-    
+
+
     nextComputerMove = nextMove();
-    if (nextComputerMove == "gameOver") {
-      setTimeout(function(){ resetGame() }, 3000);
-    }
-    else if (!playerRound) {
-      setTimeout(function(){ computerMove() }, 1000);
-    }
+      console.log(nextComputerMove);
+      if (nextComputerMove === "gameOver") {
+        setTimeout(function(){ resetGame() }, 3000);
+      }
+      else if (!playerRound && nextComputerMove != "gameOver") {
+        setTimeout(function(){ computerMove() }, 1000);
+      }
+
+      }
+
+function victory(el) {
+  return el.length <=0;
 }
 
+function strategy(el) {
+  return el.length ===1 ? (index=Number(el.toString()), true) : false;
+}
 
 function nextMove() {
-  for (index=0; index<winningComb.length; index++) {
-    if (diffComputer[index].length<=0 || diffPlayer[index].length <=0 || roundCount==9) {
-      console.log("game over");
-      return "gameOver";
-    }
-    else if (!playerRound){
-      if (diffPlayer[index].length ==1  && document.getElementById(diffPlayer[index]).innerHTML ==="") {
-        console.log("defense" + nextComputerMove);
-        return document.getElementById(diffPlayer[index].toString());
-      }
-      else if (diffComputer[index].length ==1 &&  document.getElementById(diffComputer[index].toString()).innerHTML ==="") {
-        console.log("attauqe" + nextComputerMove);
-        return document.getElementById(diffComputer[index].toString());
-      }
-      else {
-       return choixMove();
-      }
+ if (diffComputer.some(victory) || diffPlayer.some(victory)|| roundCount ===9) {
+    return "gameOver";
   }
-}
-  
+  else if(!playerRound){
+    console.log(diffPlayer.some(strategy));
+    console.log(index);
+    if (diffPlayer.some(strategy) && document.getElementById(index).innerHTML ==="") {
+      return document.getElementById(index);
+    }
+    else if (diffComputer.some(strategy) && document.getElementById(index).innerHTML ==="") {
+      return document.getElementById(index);
+    }
+    else {
+      return  choixMove();
+    }
+  }
 }
 
 
@@ -144,10 +150,8 @@ function choixMove() {
   let res =  [1,2,3,4,5,6,7,8,9].sort(function(a, b){return 0.5 - Math.random()});
   for (let j=0; j<9; j++) {
     if (document.getElementById(res[j]).innerHTML ==="") {
-      console.log(document.getElementById(res[j]))
       return document.getElementById(res[j]);
     }
   }
   }
 }
-
