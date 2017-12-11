@@ -4,13 +4,14 @@ body{
   background-color: black;
   color:white;
   font-family: 'Gloria Hallelujah', cursive;
+  min-width: 420px;
 }
 .container{
   margin:10px;
 }
 
 .jumbotron {
-background-color: #666666;
+background-color: #222222;
 
 }
 
@@ -37,7 +38,7 @@ td {
 }
 
 td:hover {
-  background-color: #44444444;
+  background-color: #333333;
 }
 
 .cmn-toggle {

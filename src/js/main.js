@@ -6,6 +6,8 @@ let playerMoves=[];
 let computerMoves=[];
 let playerIcon ="x";
 let computerIcon = "o";
+let playerColor ="red";
+let computerColor = "green";
 let roundCount = 0;
 let nextComputerMove;
 let diffComputer=[];
@@ -43,26 +45,23 @@ togPlayer.addEventListener("change", togglePlayer);
 
 function togglePlayer() {
   if (togPlayer.checked ===true) {
-    document.getElementById("pScore").style.color = "green";
-    document.getElementById("cScore").style.color = "red";
+    playerColor="green";
+    computerColor="red";
     playerIcon = "o";
     computerIcon = "x";
-
   }
   else {
-    document.getElementById("pScore").style.color = "red";
-    document.getElementById("cScore").style.color = "green";
+    playerColor="red";
+    computerColor="green";
     playerIcon = "x";
     computerIcon = "o";
   }
+  document.getElementById("pScore").style.color = playerColor;
+  document.getElementById("cScore").style.color = computerColor;
 }
 
 function resetGame(){
-  nbGames = 0;
-  playerRound = true;
   roundCount=0;
-  playerWins = 0;
-  computerWins =0;
   playerMoves=[];
   computerMoves=[];
   winningComb = [[1,2,3],[4,5,6], [7,8,9],[1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]];
@@ -72,19 +71,22 @@ function resetGame(){
 }
 
 function playerMove(e) {
-  if (playerRound === true) { 
-   e.target.innerHTML = playerIcon;
-   playerMoves.push(Number(e.target.id));
-   playerRound = false;
-   checkMoves();
+  if (playerRound === true && e.target.innerHTML==="") { 
+    togPlayer.disabled =true;
+    e.target.style.color=playerColor;
+    e.target.innerHTML = playerIcon;
+    playerMoves.push(Number(e.target.id));
+    playerRound = false;
+    checkMoves();
   }
 }
 
 function computerMove() {
-    nextComputerMove.innerHTML=computerIcon;
-    computerMoves.push(Number(nextComputerMove.id));
-    playerRound = true;
-    checkMoves();
+  nextComputerMove.style.color=computerColor;
+  nextComputerMove.innerHTML=computerIcon;
+  computerMoves.push(Number(nextComputerMove.id));
+  playerRound = true;
+  checkMoves();
 }
 
 function checkMoves() {
@@ -98,21 +100,41 @@ function checkMoves() {
     let diffC1 = x.filter(y => computerMoves.indexOf(y) == -1);
     diffPlayer.push(diffP1);
     diffComputer.push(diffC1);
-    });
-    console.log(diffComputer);
-    console.log(diffPlayer);
+  });
+  nextComputerMove = nextMove();
+  if (nextComputerMove==="computer won") {
+    computerWins+=1;
+    computerScore.innerHTML=computerWins;
+    nextGame();
+  }
+  else if (nextComputerMove==="player won") {
 
+    playerWins+=1;
+    playerScore.innerHTML=playerWins;
+    nextGame();
+  }
+  else if (nextComputerMove === "gameOver") {
+    nextGame();
+  }
+  else if (!playerRound && nextComputerMove != "gameOver" && nextComputerMove!="computer won" && nextComputerMove!="player won") {
+    setTimeout(function(){ computerMove() }, 1000);
+  }
+}
 
-    nextComputerMove = nextMove();
-      console.log(nextComputerMove);
-      if (nextComputerMove === "gameOver") {
-        setTimeout(function(){ resetGame() }, 3000);
-      }
-      else if (!playerRound && nextComputerMove != "gameOver") {
-        setTimeout(function(){ computerMove() }, 1000);
-      }
-
-      }
+function nextGame(){
+  nbGames+=1;
+  totalGames.innerHTML=nbGames;
+  setTimeout(function(){ 
+  resetGame();
+  if (nbGames==1 || nbGames==3){
+    playerRound = false;
+    checkMoves();
+  } 
+  else {
+    playerRound = true;
+    togPlayer.disabled =false;
+  }}, 3000);
+}
 
 function victory(el) {
   return el.length <=0;
@@ -123,16 +145,20 @@ function strategy(el) {
 }
 
 function nextMove() {
- if (diffComputer.some(victory) || diffPlayer.some(victory)|| roundCount ===9) {
-    return "gameOver";
+  if (diffComputer.some(victory)) {
+    return "computer won";
+  } 
+  else if (diffPlayer.some(victory)) {
+    return "player won";
+  }
+  else if (roundCount ===9) {
+      return "gameOver";
   }
   else if(!playerRound){
-    console.log(diffPlayer.some(strategy));
-    console.log(index);
-    if (diffPlayer.some(strategy) && document.getElementById(index).innerHTML ==="") {
+    if (diffComputer.some(strategy) && document.getElementById(index).innerHTML ==="") {
       return document.getElementById(index);
     }
-    else if (diffComputer.some(strategy) && document.getElementById(index).innerHTML ==="") {
+    else if (diffPlayer.some(strategy) && document.getElementById(index).innerHTML ==="") {
       return document.getElementById(index);
     }
     else {
@@ -141,17 +167,16 @@ function nextMove() {
   }
 }
 
-
 function choixMove() {
   if (selected5.innerHTML ==="") {
     return selected5;
   }
   else {
-  let res =  [1,2,3,4,5,6,7,8,9].sort(function(a, b){return 0.5 - Math.random()});
-  for (let j=0; j<9; j++) {
-    if (document.getElementById(res[j]).innerHTML ==="") {
-      return document.getElementById(res[j]);
+    let res =  [1,2,3,4,5,6,7,8,9].sort(function(a, b){return 0.5 - Math.random()});
+    for (let j=0; j<9; j++) {
+      if (document.getElementById(res[j]).innerHTML ==="") {
+        return document.getElementById(res[j]);
+      }
     }
-  }
   }
 }
