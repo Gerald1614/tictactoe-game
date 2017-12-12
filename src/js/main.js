@@ -118,25 +118,25 @@ function checkMoves() {
   nextComputerMove = nextMove();
  
   if (nextComputerMove==="computer won") {
-    msg.setAttribute("style", "display:block")
+    msg.setAttribute("class", "alert alert-primary text-center visible")
     msg.innerHTML="COMPUTER WON";
-    setTimeout(function() { msg.setAttribute("style", "display:none") }, 3000);
+    setTimeout(function() { msg.setAttribute("class", "alert alert-primary text-center invisible") }, 3000);
     computerWins+=1;
     computerScore.innerHTML=computerWins;
     nextGame();
   }
   else if (nextComputerMove==="player won") {
-    msg.setAttribute("style", "display:block")
+    msg.setAttribute("class", "alert alert-primary text-center visible")
     msg.innerHTML='YOU WON';
-    setTimeout(function() { msg.setAttribute("style", "display:none") }, 3000);
+    setTimeout(function() { msg.setAttribute("class", "alert alert-primary text-center invisible") }, 3000);
     playerWins+=1;
     playerScore.innerHTML=playerWins;
     nextGame();
   }
   else if (nextComputerMove === "gameOver") {
-    msg.setAttribute("style", "display:block")
+    msg.setAttribute("class", "alert alert-primary text-center visible")
     msg.innerHTML='TIGHT GAME';
-    setTimeout(function() { msg.setAttribute("style", "display:none") }, 3000);
+    setTimeout(function() { msg.setAttribute("class", "alert alert-primary text-center invisible") }, 3000);
     nextGame();
   }
   else if (!playerRound && nextComputerMove != "gameOver" && nextComputerMove!="computer won" && nextComputerMove!="player won") {
