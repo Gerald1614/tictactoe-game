@@ -1,78 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-        <!--[htmlclean-protect]-->
-        <meta charset="UTF-8">
-        <meta name="description" content="Javascript Tic Tac Toe for FreeCodeCamp">
-        <meta name="keywords" content="HTML,CSS, bootstrap, gulp, JavaScript">
-        <meta name="author" content="Gerald Michelant">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Tic Tac Toe game</title>
-        <link rel="icon" href="./images/Tictactoe-ico.png" type="image/png">
-        <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-  <!-- inject:css -->
-  <!-- endinject -->
-  <!--[/htmlclean-protect]-->
-</head>
-<body>
+  <head>
+    <!--[htmlclean-protect]-->
+    <meta charset="UTF-8">
+    <meta name="description" content="Javascript Tic Tac Toe for FreeCodeCamp">
+    <meta name="keywords" content="HTML,CSS, bootstrap, gulp, JavaScript">
+    <meta name="author" content="Gerald Michelant">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Tic Tac Toe game</title>
+    <link rel="icon" href="./images/Tictactoe-ico.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!--[/htmlclean-protect]-->
+  </head>
+  <body>
+    <div class="jumbotron jumbotron-fluid">
 
-        <div class="jumbotron jumbotron-fluid">
-
-                                <img src="./images/Tictactoe.png" class="img-fluid rounded float-left" alt="tictactoe">
- 
-                                 <h1 class="text-center">Tic Tac Toe game</h1>
-                                <h3 class="text-center">by Gege-Raptor - Dec 2017</h3>
-
-        </div>
+      <img src="./images/Tictactoe.png" class="img-fluid rounded float-left" alt="tictactoe">
+      <h1 class="text-center">Tic Tac Toe game</h1>
+      <h3 class="text-center">by Gege-Raptor - Dec 2017</h3>
+    </div>
                 
- <div class="container">
-         <div class="row">
-                 <div class="col-12">
-                        <div class="switch">
-                                <span class="align-top"> play with </span><span class="align-top" style="color:red">X  </span>
-                                <input id="cmn-toggle-4" class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
-                                <label for="cmn-toggle-4"></label> 
-                                <span class="align-top">  or </span><span class="align-top" style="color:green">O</span>
-                        </div>
-                </div>
-              </div>
-                <div class="row ">
-                <div class="col-6 offset-1">
-                       <p class="text-right">Game played : <span id="totalGames">0</span></p>
-                       <p id="pScore" class="text-right" style="color:red">Your score : <span id="playerScore">0</span></p>
-                       <p  id="cScore" class="text-right" style="color:green">Computer score : <span id="computerScore">0</span></p>
-                </div>
-                </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="switch text-center">
+            <span class="align-top"> play with </span><span class="align-top" style="color:red">X  </span>
+            <input id="cmn-toggle-4" class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
+            <label for="cmn-toggle-4"></label> 
+            <span class="align-top">  or </span><span class="align-top" style="color:green">O</span>
+          </div>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="col-12">
+          <div class=" justify-content-around">
+            <div class="col text-center">
+              <span>Game played : 
+              <span id="totalGames">0</span>
+              </span>
+              <button class="btn btn-sm btn-outline-primary " onclick="resetScores()">Reset score</button>
+            </div>
+          </div>
+          <div class="row justify-content-around">
+            <div class="col-sm-6 text-center">
+              <span id="pScore" style="color:red">Your score : 
+              <span id="playerScore">0</span></span>
+            </div>
+            <div class="col-sm-6 text-center">
+              <span id="cScore" style="color:green">Computer score : 
+              <span id="computerScore">0</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
         <table class=" gameplay table table-inverse table-bordered table-sm text-center">
-                        <tbody>
-                          <tr>
-                            <td id="1"></td>
-                            <td id="2"></td>
-                            <td id="3"></td>
-                          </tr>
-                          <tr>
-                            <td id="4"></td>
-                            <td id="5"></td>
-                            <td id="6"></td>
-                          </tr>
-                          <tr>
-                            <td id="7"></td>
-                            <td id="8"></td>
-                            <td id="9"></td>
-                          </tr>
-                        </tbody>
-                      </table>
-
-
-</div>
-<!--[htmlclean-protect]-->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-<!-- inject:js -->
-<!-- endinject -->
-<!--[/htmlclean-protect]-->
-</body>
+          <tbody>
+            <tr>
+              <td id="1"></td>
+              <td id="2"></td>
+              <td id="3"></td>
+            </tr>
+            <tr>
+              <td id="4"></td>
+              <td id="5"></td>
+              <td id="6"></td>
+            </tr>
+            <tr>
+              <td id="7"></td>
+              <td id="8"></td>
+              <td id="9"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div id="msg" class="alert alert-primary text-center" style="display:none;" role="alert"></div>
+    </div>
+    <!--[htmlclean-protect]-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <!-- inject:js -->
+    <!-- endinject -->
+    <!--[/htmlclean-protect]-->
+  </body>
 </html>

@@ -4,6 +4,7 @@ body{
   background-color: black;
   color:white;
   font-family: 'Gloria Hallelujah', cursive;
+  font-size: 120%;
   min-width: 420px;
 }
 .container{
@@ -20,21 +21,24 @@ background-color: #222222;
 }
 
 span {
-font-size: 200%;
+  margin: 10px;
+}
+.alert {
+  margin:20px;
 }
 
 .gameplay {
-margin:0px auto;
+margin:20px auto;
 width: 300px
 }
-p {
-  margin: 0px;
+.row {
+  margin: 10px;
 }
 
 td {
   width: 100px;
   height: 100px;
-  font-size: 400%;
+  font-size: 300%;
 }
 
 td:hover {
@@ -58,14 +62,14 @@ td:hover {
 }
 input.cmn-toggle-round-flat + label {
   padding: 2px;
-  width: 120px;
-  height: 40px;
+  width: 100px;
+  height: 36px;
   background-color: red;
-  -webkit-border-radius: 40px;
-  -moz-border-radius: 40px;
-  -ms-border-radius: 40px;
-  -o-border-radius: 40px;
-  border-radius: 40px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  border-radius: 30px;
   -webkit-transition: background 0.4s;
   -moz-transition: background 0.4s;
   -o-transition: background 0.4s;
@@ -81,12 +85,12 @@ input.cmn-toggle-round-flat + label:before {
   left: 2px;
   bottom: 2px;
   right: 2px;
-  background-color: #fff;
-  -webkit-border-radius: 40px;
-  -moz-border-radius: 40px;
-  -ms-border-radius: 40px;
-  -o-border-radius: 40px;
-  border-radius: 40px;
+  background-color: black;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  border-radius: 30px;
   -webkit-transition: background 0.4s;
   -moz-transition: background 0.4s;
   -o-transition: background 0.4s;
@@ -96,22 +100,22 @@ input.cmn-toggle-round-flat + label:after {
   top: 4px;
   left: 4px;
   bottom: 4px;
-  width: 52px;
+  width: 30px;
   background-color: red;
-  -webkit-border-radius: 52px;
-  -moz-border-radius: 52px;
-  -ms-border-radius: 52px;
-  -o-border-radius: 52px;
-  border-radius: 52px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  border-radius: 30px;
   -webkit-transition: margin 0.4s, background 0.4s;
   -moz-transition: margin 0.4s, background 0.4s;
   -o-transition: margin 0.4s, background 0.4s;
   transition: margin 0.4s, background 0.4s;
 }
 input.cmn-toggle-round-flat:checked + label {
-  background-color: #8ce196;
+  background-color: green;
 }
 input.cmn-toggle-round-flat:checked + label:after {
   margin-left: 60px;
-  background-color: #8ce196;
+  background-color:green;
 }

@@ -14,7 +14,7 @@ let diffComputer=[];
 let diffPlayer=[];
 let index;
 
-let winningComb = [[1,2,3],[4,5,6], [7,8,9],[1,4,7], [2,5,8], [1,5,9], [3,5,7]];
+let winningComb = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]];
 
 let togPlayer = document.getElementById("cmn-toggle-4");
 let totalGames = document.getElementById("totalGames");
@@ -22,6 +22,7 @@ let playerScore= document.getElementById("playerScore");
 let computerScore = document.getElementById("computerScore");
 togPlayer.addEventListener("change", togglePlayer);
 
+let msg = document.getElementById("msg");
 
   let selected1 = document.getElementById(1);
   selected1.addEventListener("click", playerMove);
@@ -58,6 +59,19 @@ function togglePlayer() {
   }
   document.getElementById("pScore").style.color = playerColor;
   document.getElementById("cScore").style.color = computerColor;
+}
+
+function resetScores() {
+  nbGames =0;
+  totalGames.innerHTML=nbGames;
+  computerWins=0;
+  computerScore.innerHTML=computerWins;
+  playerWins=0;
+  playerScore.innerHTML=playerWins;
+  playerRound = true;
+  togPlayer.disabled =false;
+  resetGame();
+  console.log("reset score");
 }
 
 function resetGame(){
@@ -102,18 +116,27 @@ function checkMoves() {
     diffComputer.push(diffC1);
   });
   nextComputerMove = nextMove();
+ 
   if (nextComputerMove==="computer won") {
+    msg.setAttribute("style", "display:block")
+    msg.innerHTML="COMPUTER WON";
+    setTimeout(function() { msg.setAttribute("style", "display:none") }, 3000);
     computerWins+=1;
     computerScore.innerHTML=computerWins;
     nextGame();
   }
   else if (nextComputerMove==="player won") {
-
+    msg.setAttribute("style", "display:block")
+    msg.innerHTML='YOU WON';
+    setTimeout(function() { msg.setAttribute("style", "display:none") }, 3000);
     playerWins+=1;
     playerScore.innerHTML=playerWins;
     nextGame();
   }
   else if (nextComputerMove === "gameOver") {
+    msg.setAttribute("style", "display:block")
+    msg.innerHTML='TIGHT GAME';
+    setTimeout(function() { msg.setAttribute("style", "display:none") }, 3000);
     nextGame();
   }
   else if (!playerRound && nextComputerMove != "gameOver" && nextComputerMove!="computer won" && nextComputerMove!="player won") {
@@ -126,7 +149,7 @@ function nextGame(){
   totalGames.innerHTML=nbGames;
   setTimeout(function(){ 
   resetGame();
-  if (nbGames==1 || nbGames==3){
+  if (nbGames % 2) {
     playerRound = false;
     checkMoves();
   } 
